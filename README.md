@@ -18,8 +18,8 @@
 ## 🧭 Core Loop
 
 1. Prepare Petri dishes with medium
-2. Inoculate with bacteria
-3. Use as hosts to capture phages
+2. Collect bacteria from diverse biomes
+3. Use bacteria as hosts to capture phages
 4. Publish your results at the Research Table
 5. Unlock tech trees and expand your microbial zoo!
 
