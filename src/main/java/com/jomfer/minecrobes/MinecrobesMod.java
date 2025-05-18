@@ -27,6 +27,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
+import com.jomfer.minecrobes.item.ModItems;
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MinecrobesMod.MODID)
@@ -82,6 +84,9 @@ public class MinecrobesMod
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        // Register all custom items for the Minecrobes mod
+        ModItems.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -101,7 +106,7 @@ public class MinecrobesMod
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
-            event.accept(EXAMPLE_BLOCK_ITEM);
+            event.accept(ModItems.PETRI_DISH); // Show Petri Dish in creative inventory
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
