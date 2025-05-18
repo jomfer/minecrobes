@@ -37,11 +37,12 @@
 
 This mod uses the Minecraft Forge development framework. To build or run it locally:
 
-```bash
-./gradlew genIntellijRuns
-```
+1. [Download and install IntelliJ IDEA](https://www.jetbrains.com/idea/)
+2. Install Java 17 (we recommend [Eclipse Temurin 17.0.15+6](https://adoptium.net/temurin/releases/))
+3. Clone or download this repository
+4. In IntelliJ, go to **File > Open...**, navigate to the `build.gradle` file in the root of the project, and click **Open as Project**
+5. Let IntelliJ finish syncing and importing the Gradle project. Once indexing is complete, you can launch the mod using the Gradle task `runClient` (found in the Gradle panel).
 
-Then import the project into IntelliJ IDEA as a Gradle project.
 
 ---
 
