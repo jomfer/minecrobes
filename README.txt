@@ -1,46 +1,40 @@
+# 🧫 Minecrobes
 
-Source installation information for modders
--------------------------------------------
-This code follows the Minecraft Forge installation methodology. It will apply
-some small patches to the vanilla MCP source code, giving you and it access 
-to some of the data and functions you need to build a successful mod.
+*Minecrobes* is a Minecraft mod that brings microbial life into the world — from grazing soil bacteria to explosive phages. Inspired by real microbiology, it’s both educational and fun.
 
-Note also that the patches are built against "un-renamed" MCP source code (aka
-SRG Names) - this means that you will not be able to read them directly against
-normal code.
+## 🔬 Gameplay Highlights
 
-Setup Process:
-==============================
+- 🧪 Craft Petri dishes to culture bacteria and collect microbes
+- 🍳 Prepare realistic agar media like LB medium
+- 🦠 Capture bacteriophages with soft agar overlays
+- 📚 Research your findings to earn Research Points
+- 🏗 Unlock new lab equipment and biosafety levels (BL-1 to BL-3)
+- ☣️ Explore caves and hostile biomes to find exotic and dangerous microbes
 
-Step 1: Open your command-line and browse to the folder where you extracted the zip file.
+## 🧭 Core Loop
 
-Step 2: You're left with a choice.
-If you prefer to use Eclipse:
-1. Run the following command: `./gradlew genEclipseRuns`
-2. Open Eclipse, Import > Existing Gradle Project > Select Folder 
-   or run `gradlew eclipse` to generate the project.
+1. Prepare Petri dishes with medium
+2. Inoculate with bacteria
+3. Use as hosts to capture phages
+4. Publish your results at the Research Table
+5. Unlock tech trees and expand your microbial zoo!
 
-If you prefer to use IntelliJ:
-1. Open IDEA, and import project.
-2. Select your build.gradle file and have it import.
-3. Run the following command: `./gradlew genIntellijRuns`
-4. Refresh the Gradle Project in IDEA if required.
+## 🌱 Goals
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can 
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-(this does not affect your code) and then start the process again.
+- Blend accurate microbiology with Minecraft survival
+- Provide educational content through in-game books and progression
+- Build a scalable system for research and discovery
 
-Mapping Names:
-=============================
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license, if you do not agree with it you can change your mapping names to other crowdsourced names in your 
-build.gradle. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/MinecraftForge/MCPConfig/blob/master/Mojang.md
+## 🛠 Installation
 
-Additional Resources: 
-=========================
-Community Documentation: https://docs.minecraftforge.net/en/1.20.1/gettingstarted/
-LexManos' Install Video: https://youtu.be/8VEdtQLuLO0
-Forge Forums: https://forums.minecraftforge.net/
-Forge Discord: https://discord.minecraftforge.net/
+This mod uses the Minecraft Forge development framework. To build or run it locally:
+
+```bash
+./gradlew genIntellijRuns
+```
+
+Import into IntelliJ as a Gradle project.
+
+## 📂 Dev Notes
+Full design notes available in docs/design_ideas.md.
+
