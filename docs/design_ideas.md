@@ -104,7 +104,7 @@ To complement the realistic microbiology side, the mod includes fictional macros
 ---
 
 ## 🔖 To-Do
-- [ ] Implement `Petri Dish` item
+- [X] Implement `Petri Dish` item
 - [ ] Add `LB Agar` crafting system
 - [ ] Prototype microbial culture mechanic
 - [ ] Add `Research Table` block
