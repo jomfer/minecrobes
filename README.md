@@ -3,6 +3,12 @@
 **Minecrobes** is a Minecraft mod that brings microbial life into the world — from grazing soil bacteria to explosive phages. Inspired by real microbiology, it’s both educational and fun.
 
 ---
+## 🧫 Preview
+
+Here’s Steve proudly holding a petri dish in-game!
+
+![Steve holding a petri dish](docs/preview.png)
+---
 
 ## 🔬 Gameplay Highlights
 
