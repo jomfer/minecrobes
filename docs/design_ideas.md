@@ -105,7 +105,7 @@ To complement the realistic microbiology side, the mod includes fictional macros
 
 ## 🔖 To-Do
 - [X] Implement `Petri Dish` item
-- [ ] Make screenshot of Steve and petri dish for github page
+- [x] Make screenshot of Steve and petri dish for github page
 - [ ] Add `LB Agar` crafting system
 - [ ] Prototype microbial culture mechanic
 - [ ] Add `Research Table` block
