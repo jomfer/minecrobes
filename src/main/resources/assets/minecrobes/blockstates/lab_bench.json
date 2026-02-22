@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "minecrobes:block/lab_bench" },
+    "facing=south": { "model": "minecrobes:block/lab_bench", "y": 180 },
+    "facing=east":  { "model": "minecrobes:block/lab_bench", "y": 90 },
+    "facing=west":  { "model": "minecrobes:block/lab_bench", "y": 270 }
+  }
+}

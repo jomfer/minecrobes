@@ -27,6 +27,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
+import com.jomfer.minecrobes.block.ModBlocks;
 import com.jomfer.minecrobes.item.ModItems;
 
 
@@ -87,6 +88,9 @@ public class MinecrobesMod
 
         // Register all custom items for the Minecrobes mod
         ModItems.register(modEventBus);
+
+        // Register all custom blocks for the Minecrobes mod
+        ModBlocks.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -105,8 +109,10 @@ public class MinecrobesMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
-            event.accept(ModItems.PETRI_DISH); // Show Petri Dish in creative inventory
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModItems.PETRI_DISH);
+            event.accept(ModBlocks.LAB_BENCH_ITEM);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
