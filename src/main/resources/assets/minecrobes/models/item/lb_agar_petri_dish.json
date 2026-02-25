@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecrobes:item/lb_agar_petri_dish"
+  }
+}

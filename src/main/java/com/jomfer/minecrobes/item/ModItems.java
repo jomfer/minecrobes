@@ -15,9 +15,14 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, MinecrobesMod.MODID);
 
-    // The actual item, registered with a name and a constructor
     public static final RegistryObject<Item> PETRI_DISH =
             ITEMS.register("petri_dish", PetriDishItem::new);
+
+    public static final RegistryObject<Item> LB_MEDIUM =
+            ITEMS.register("lb_medium", () -> new Item(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> LB_AGAR_PETRI_DISH =
+            ITEMS.register("lb_agar_petri_dish", () -> new Item(new Item.Properties().stacksTo(16)));
 
     // Hook into the Forge event system
     public static void register(IEventBus eventBus) {

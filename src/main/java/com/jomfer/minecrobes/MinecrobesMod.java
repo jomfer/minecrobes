@@ -20,6 +20,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -28,7 +29,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 import com.jomfer.minecrobes.block.ModBlocks;
+import com.jomfer.minecrobes.block.entity.ModBlockEntities;
 import com.jomfer.minecrobes.item.ModItems;
+import com.jomfer.minecrobes.menu.ModMenuTypes;
+import com.jomfer.minecrobes.screen.LabBenchScreen;
 
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -91,6 +95,10 @@ public class MinecrobesMod
 
         // Register all custom blocks for the Minecrobes mod
         ModBlocks.register(modEventBus);
+
+        // Register block entities and menu types
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -111,6 +119,8 @@ public class MinecrobesMod
     {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModItems.PETRI_DISH);
+            event.accept(ModItems.LB_MEDIUM);
+            event.accept(ModItems.LB_AGAR_PETRI_DISH);
             event.accept(ModBlocks.LAB_BENCH_ITEM);
         }
     }
@@ -133,6 +143,9 @@ public class MinecrobesMod
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+            // Register screens
+            MenuScreens.register(ModMenuTypes.LAB_BENCH_MENU.get(), LabBenchScreen::new);
         }
     }
 }

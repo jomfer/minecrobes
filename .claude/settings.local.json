@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where java:*)",
+      "Bash(cd /c/HighFlyStudios/minecrobes && ./gradlew build 2>&1)"
+    ]
+  }
+}
