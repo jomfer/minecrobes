@@ -24,6 +24,15 @@ public class ModItems {
     public static final RegistryObject<Item> LB_AGAR_PETRI_DISH =
             ITEMS.register("lb_agar_petri_dish", () -> new Item(new Item.Properties().stacksTo(16)));
 
+    public static final RegistryObject<Item> EMPTY_COLLECTION_TUBE =
+            ITEMS.register("empty_collection_tube", () -> new Item(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> FULL_COLLECTION_TUBE =
+            ITEMS.register("full_collection_tube", () -> new Item(new Item.Properties().stacksTo(16)));
+
+    public static final RegistryObject<Item> CULTURED_PLATE =
+            ITEMS.register("cultured_plate", () -> new Item(new Item.Properties().stacksTo(16)));
+
     // Hook into the Forge event system
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

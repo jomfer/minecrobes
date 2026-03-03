@@ -18,8 +18,8 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class LabBenchMenu extends AbstractContainerMenu {
 
-    public static final int SLOT_PETRI_DISH = 0;
-    public static final int SLOT_LB_MEDIUM = 1;
+    public static final int SLOT_INPUT_1 = 0;
+    public static final int SLOT_INPUT_2 = 1;
     public static final int SLOT_OUTPUT = 2;
 
     private final LabBenchBlockEntity blockEntity;
@@ -42,8 +42,8 @@ public class LabBenchMenu extends AbstractContainerMenu {
         this.itemHandler = handler;
 
         // Lab bench input slots
-        this.addSlot(new SlotItemHandler(handler, SLOT_PETRI_DISH, 38, 35));
-        this.addSlot(new SlotItemHandler(handler, SLOT_LB_MEDIUM, 66, 35));
+        this.addSlot(new SlotItemHandler(handler, SLOT_INPUT_1, 38, 35));
+        this.addSlot(new SlotItemHandler(handler, SLOT_INPUT_2, 66, 35));
 
         // Result slot uses a separate container (like vanilla crafting)
         this.addSlot(new LabBenchResultSlot(resultContainer, 0, 124, 35, this));
@@ -62,23 +62,46 @@ public class LabBenchMenu extends AbstractContainerMenu {
         updateResult();
     }
 
+    /**
+     * Returns the output for the current recipe, or EMPTY if no recipe matches.
+     * Recipe A: petri_dish + lb_medium -> lb_agar_petri_dish
+     * Recipe B: full_collection_tube + lb_agar_petri_dish -> cultured_plate
+     */
+    private ItemStack getRecipeResult() {
+        ItemStack input1 = itemHandler.getStackInSlot(SLOT_INPUT_1);
+        ItemStack input2 = itemHandler.getStackInSlot(SLOT_INPUT_2);
+
+        // Recipe A (shapeless): petri_dish + lb_medium -> lb_agar_petri_dish
+        if (hasIngredients(input1, input2, ModItems.PETRI_DISH.get(), ModItems.LB_MEDIUM.get())) {
+            return new ItemStack(ModItems.LB_AGAR_PETRI_DISH.get());
+        }
+        // Recipe B (shapeless): full_collection_tube + lb_agar_petri_dish -> cultured_plate
+        if (hasIngredients(input1, input2, ModItems.FULL_COLLECTION_TUBE.get(), ModItems.LB_AGAR_PETRI_DISH.get())) {
+            return new ItemStack(ModItems.CULTURED_PLATE.get());
+        }
+
+        return ItemStack.EMPTY;
+    }
+
+    /** Returns true if the two slots contain both ingredients in any order. */
+    private static boolean hasIngredients(ItemStack slot1, ItemStack slot2,
+                                          net.minecraft.world.level.ItemLike ingredientA,
+                                          net.minecraft.world.level.ItemLike ingredientB) {
+        return (slot1.is(ingredientA.asItem()) && slot2.is(ingredientB.asItem()))
+            || (slot1.is(ingredientB.asItem()) && slot2.is(ingredientA.asItem()));
+    }
+
     public boolean hasRecipe() {
-        ItemStack dish = itemHandler.getStackInSlot(SLOT_PETRI_DISH);
-        ItemStack medium = itemHandler.getStackInSlot(SLOT_LB_MEDIUM);
-        return dish.is(ModItems.PETRI_DISH.get()) && medium.is(ModItems.LB_MEDIUM.get());
+        return !getRecipeResult().isEmpty();
     }
 
     public void consumeInputs() {
-        itemHandler.extractItem(SLOT_PETRI_DISH, 1, false);
-        itemHandler.extractItem(SLOT_LB_MEDIUM, 1, false);
+        itemHandler.extractItem(SLOT_INPUT_1, 1, false);
+        itemHandler.extractItem(SLOT_INPUT_2, 1, false);
     }
 
     public void updateResult() {
-        if (hasRecipe()) {
-            resultContainer.setItem(0, new ItemStack(ModItems.LB_AGAR_PETRI_DISH.get()));
-        } else {
-            resultContainer.setItem(0, ItemStack.EMPTY);
-        }
+        resultContainer.setItem(0, getRecipeResult());
     }
 
     @Override
@@ -109,12 +132,11 @@ public class LabBenchMenu extends AbstractContainerMenu {
             slot.onQuickCraft(slotStack, originalStack);
         } else if (index >= playerInventoryStart) {
             // Shift-click from player inventory -> bench input slots
-            if (slotStack.is(ModItems.PETRI_DISH.get())) {
-                if (!this.moveItemStackTo(slotStack, SLOT_PETRI_DISH, SLOT_PETRI_DISH + 1, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (slotStack.is(ModItems.LB_MEDIUM.get())) {
-                if (!this.moveItemStackTo(slotStack, SLOT_LB_MEDIUM, SLOT_LB_MEDIUM + 1, false)) {
+            // Any valid lab bench ingredient can go into either input slot
+            if (slotStack.is(ModItems.PETRI_DISH.get()) || slotStack.is(ModItems.FULL_COLLECTION_TUBE.get())
+                    || slotStack.is(ModItems.LB_MEDIUM.get()) || slotStack.is(ModItems.LB_AGAR_PETRI_DISH.get())) {
+                // Try slot 1 first, then slot 2
+                if (!this.moveItemStackTo(slotStack, SLOT_INPUT_1, SLOT_INPUT_2 + 1, false)) {
                     return ItemStack.EMPTY;
                 }
             } else {

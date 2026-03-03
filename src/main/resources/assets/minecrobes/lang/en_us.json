@@ -2,5 +2,9 @@
   "item.minecrobes.petri_dish": "Petri Dish",
   "item.minecrobes.lb_medium": "LB Medium",
   "item.minecrobes.lb_agar_petri_dish": "LB Agar Petri Dish",
-  "block.minecrobes.lab_bench": "Lab Bench"
+  "item.minecrobes.empty_collection_tube": "Empty Collection Tube",
+  "item.minecrobes.full_collection_tube": "Full Collection Tube",
+  "item.minecrobes.cultured_plate": "Cultured Plate",
+  "block.minecrobes.lab_bench": "Lab Bench",
+  "block.minecrobes.biofilm_block": "Biofilm"
 }
