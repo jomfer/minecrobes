@@ -121,7 +121,11 @@ public class MinecrobesMod
             event.accept(ModItems.PETRI_DISH);
             event.accept(ModItems.LB_MEDIUM);
             event.accept(ModItems.LB_AGAR_PETRI_DISH);
+            event.accept(ModItems.EMPTY_COLLECTION_TUBE);
+            event.accept(ModItems.FULL_COLLECTION_TUBE);
+            event.accept(ModItems.CULTURED_PLATE);
             event.accept(ModBlocks.LAB_BENCH_ITEM);
+            event.accept(ModBlocks.BIOFILM_BLOCK_ITEM);
         }
     }
 

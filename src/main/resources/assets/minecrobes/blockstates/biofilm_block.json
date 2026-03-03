@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "minecrobes:block/biofilm_block" }
+  }
+}
